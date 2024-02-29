@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://ds83brgsw4xb6"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_sk35d"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_sk35d")
+
+[node name="Title" type="Label" parent="."]
+offset_left = 1.0
+offset_top = 3.0
+offset_right = 97.0
+offset_bottom = 51.0
+text = "I Planet"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="start game" type="Button" parent="."]
+offset_left = 4.0
+offset_top = 47.0
+offset_right = 105.0
+offset_bottom = 82.0
+text = "Start Game"
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 8.0
+offset_top = 89.0
+offset_right = 102.0
+offset_bottom = 125.0
+text = "Quit"
+
+[connection signal="pressed" from="start game" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

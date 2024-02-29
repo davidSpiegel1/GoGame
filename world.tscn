@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://ky4da8sjr4s5"]
+
+[ext_resource type="PackedScene" uid="uid://clyuct3pfqui7" path="res://player.tscn" id="1_57ogg"]
+[ext_resource type="PackedScene" uid="uid://dvd27y0o0qg4r" path="res://parallax_background.tscn" id="1_xcbms"]
+[ext_resource type="Script" path="res://model/Parse.gd" id="2_6400j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1746f"]
+size = Vector2(1178.5, 348.5)
+
+[node name="World" type="Node2D"]
+script = ExtResource("2_6400j")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("1_xcbms")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(587, 818)
+shape = SubResource("RectangleShape2D_1746f")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -313.0
+offset_top = -92.0
+offset_right = 621.0
+offset_bottom = 205.0
+text = "Inventory: "
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 8.0
+offset_top = 644.0
+offset_right = 1195.0
+offset_bottom = 994.0
+
+[node name="Player" parent="." instance=ExtResource("1_57ogg")]
+position = Vector2(99, 58)

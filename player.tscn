@@ -1,0 +1,131 @@
+[gd_scene load_steps=11 format=3 uid="uid://clyuct3pfqui7"]
+
+[ext_resource type="Texture2D" uid="uid://boc7hk0o3udnb" path="res://charCss.svg" id="1_2c6sw"]
+[ext_resource type="Script" path="res://player.gd" id="1_loimr"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q67xr"]
+radius = 13.0
+height = 32.0
+
+[sub_resource type="Animation" id="Animation_55lww"]
+resource_name = "Grab"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharCss:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.5708, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_trs23"]
+resource_name = "Idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharCss:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4001, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.9, 0.825), Vector2(0.940989, 0.862563), Vector2(0.899, 0.825)]
+}
+
+[sub_resource type="Animation" id="Animation_lujj3"]
+resource_name = "Jump"
+
+[sub_resource type="Animation" id="Animation_6gaqg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharCss:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.605629]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharCss:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.940989, 0.862563)]
+}
+
+[sub_resource type="Animation" id="Animation_g7ig3"]
+resource_name = "Run"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharCss:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.01927, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_byci8"]
+resource_name = "newAnimation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharCss:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.413643, 0.832522, -0.413643]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gax8o"]
+_data = {
+"Grab": SubResource("Animation_55lww"),
+"Idle": SubResource("Animation_trs23"),
+"Jump": SubResource("Animation_lujj3"),
+"RESET": SubResource("Animation_6gaqg"),
+"Run": SubResource("Animation_g7ig3"),
+"newAnimation": SubResource("Animation_byci8")
+}
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_loimr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -24)
+shape = SubResource("CapsuleShape2D_q67xr")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+
+[node name="CharCss" type="Sprite2D" parent="."]
+position = Vector2(-8.00003, -64)
+rotation = 0.605629
+scale = Vector2(0.940989, 0.862563)
+texture = ExtResource("1_2c6sw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gax8o")
+}
